@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userLang = navigator.language || navigator.userLanguage;
   const supportedLangs = ['en', 'es'];
 
-  chrome.storage.sync.get(['language', 'autoDetectLanguage'], function(data) {
+  chrome.storage.sync.get(['language', 'autoDetectLanguage', 'interval', 'endTime'], function(data) {
     let lang = data.language || getSupportedLanguage(userLang, supportedLangs);
     const autoDetectLanguage = data.autoDetectLanguage !== undefined ? data.autoDetectLanguage : true;
     
@@ -16,8 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadInterval();
 
     document.getElementById('save').addEventListener('click', function() {
-      const interval = document.getElementById('interval').value;
-      chrome.storage.sync.set({ interval: interval }, function() {
+      const interval = parseInt(document.getElementById('interval').value);
+      const endTime = Date.now() + interval * 1000;
+      chrome.storage.sync.set({ interval: interval, endTime: endTime }, function() {
         showNotification(lang, 'notification-saved');
       });
     });
@@ -67,23 +68,26 @@ function showNotification(lang, messageKey) {
 
 function loadInterval() {
   chrome.storage.sync.get({ interval: 60 }, function(data) {
-    document.getElementById('interval').value = data.interval;
+    const interval = data.interval || 1;
+    document.getElementById('interval').value = interval;
     updateIntervalDisplay();
   });
 }
 
 function updateIntervalDisplay() {
-  const interval = document.getElementById('interval').value;
+  const interval = parseInt(document.getElementById('interval').value) || 1;
   let displayText = '';
 
   if (interval < 60) {
     displayText = `${interval} seconds`;
   } else if (interval < 3600) {
-    const minutes = (interval / 60).toFixed(2);
-    displayText = `${minutes} minutes`;
+    const minutes = Math.floor(interval / 60);
+    const seconds = interval % 60;
+    displayText = `${minutes} minutes ${seconds} seconds`;
   } else {
-    const hours = (interval / 3600).toFixed(2);
-    displayText = `${hours} hours`;
+    const hours = Math.floor(interval / 3600);
+    const minutes = Math.floor((interval % 3600) / 60);
+    displayText = `${hours} hours ${minutes} minutes`;
   }
 
   document.getElementById('interval-display').textContent = displayText;

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const userLang = navigator.language || navigator.userLanguage;
   const supportedLangs = ['en', 'es'];
 
-  chrome.storage.sync.get(['language', 'autoDetectLanguage', 'interval'], function(data) {
+  chrome.storage.sync.get(['language', 'autoDetectLanguage', 'interval', 'endTime'], function(data) {
     let lang = data.language || getSupportedLanguage(userLang, supportedLangs);
     const autoDetectLanguage = data.autoDetectLanguage !== undefined ? data.autoDetectLanguage : true;
 
@@ -15,7 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
     setLanguage(lang);
     const interval = data.interval || 60;
     updateIntervalDisplay(interval);
-    startCountdown(interval);
+
+    let endTime = data.endTime;
+    if (!endTime || Date.now() > endTime) {
+      endTime = Date.now() + interval * 1000;
+      chrome.storage.sync.set({ endTime: endTime });
+    }
+    startCountdown(endTime);
 
     document.getElementById('lang-en').addEventListener('click', () => selectLanguage('en'));
     document.getElementById('lang-es').addEventListener('click', () => selectLanguage('es'));
@@ -47,19 +53,21 @@ function selectLanguage(lang) {
 
 function updateIntervalDisplay(interval) {
   const intervalDisplay = document.getElementById('interval-display');
+  interval = interval || 1; // Set minimum to 1 second if undefined or 0
   if (interval < 60) {
     intervalDisplay.textContent = `${interval} seconds`;
   } else if (interval < 3600) {
-    const minutes = (interval / 60).toFixed(2);
-    intervalDisplay.textContent = `${minutes} minutes`;
+    const minutes = Math.floor(interval / 60);
+    const seconds = interval % 60;
+    intervalDisplay.textContent = `${minutes} minutes ${seconds} seconds`;
   } else {
-    const hours = (interval / 3600).toFixed(2);
-    intervalDisplay.textContent = `${hours} hours`;
+    const hours = Math.floor(interval / 3600);
+    const minutes = Math.floor((interval % 3600) / 60);
+    intervalDisplay.textContent = `${hours} hours ${minutes} minutes`;
   }
 }
 
-function startCountdown(interval) {
-  const endTime = Date.now() + interval * 1000;
+function startCountdown(endTime) {
   updateCountdown(endTime);
 
   setInterval(() => {
@@ -87,3 +95,4 @@ function updateCountdown(endTime) {
 
   timeRemainingDisplay.textContent = displayText;
 }
+ 
