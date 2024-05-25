@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   chrome.storage.sync.get(['language', 'autoDetectLanguage'], function(data) {
     let lang = data.language || getSupportedLanguage(userLang, supportedLangs);
     const autoDetectLanguage = data.autoDetectLanguage !== undefined ? data.autoDetectLanguage : true;
-
+    
     if (!autoDetectLanguage) {
       lang = data.language;
     } else {
