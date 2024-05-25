@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('back-button').addEventListener('click', function() {
       window.location.href = 'popup.html';
     });
+
+    document.getElementById('interval').addEventListener('input', function() {
+      updateIntervalDisplay();
+    });
   });
 });
 
@@ -64,5 +68,23 @@ function showNotification(lang, messageKey) {
 function loadInterval() {
   chrome.storage.sync.get({ interval: 60 }, function(data) {
     document.getElementById('interval').value = data.interval;
+    updateIntervalDisplay();
   });
+}
+
+function updateIntervalDisplay() {
+  const interval = document.getElementById('interval').value;
+  let displayText = '';
+
+  if (interval < 60) {
+    displayText = `${interval} seconds`;
+  } else if (interval < 3600) {
+    const minutes = (interval / 60).toFixed(2);
+    displayText = `${minutes} minutes`;
+  } else {
+    const hours = (interval / 3600).toFixed(2);
+    displayText = `${hours} hours`;
+  }
+
+  document.getElementById('interval-display').textContent = displayText;
 }

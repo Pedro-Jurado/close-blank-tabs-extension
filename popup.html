@@ -39,6 +39,14 @@
     a:hover {
       text-decoration: underline;
     }
+    .interval-display, .time-remaining {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+      background-color: #e0e0e0;
+      padding: 10px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -47,6 +55,8 @@
     <img src="icons/es.png" alt="Español" id="lang-es">
   </div>
   <h1 id="title">Close Blank Tabs</h1>
+  <div class="interval-display" id="interval-display">Loading...</div>
+  <div class="time-remaining" id="time-remaining">Calculating...</div>
   <p id="description">This extension automatically closes empty or about:blank tabs.</p>
   <a href="options.html" id="settings-link">Settings</a>
 
