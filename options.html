@@ -6,20 +6,81 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
+      background-color: #f9f9f9;
+      margin: 0;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 20px;
     }
     label {
       display: block;
       margin-bottom: 10px;
+      font-size: 14px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background-color: #005bb5;
+    }
+    .back-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .back-button img {
+      width: 24px;
+      height: auto;
+    }
+    #notification {
+      display: none;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      position: fixed;
+      bottom: 20px;
+      width: 260px;
+      left: 20px;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <h1>Configuración de Close Blank Tabs</h1>
-  <label>
-    Intervalo de verificación (segundos):
-    <input type="number" id="interval" min="1" value="60">
-  </label>
+  <div class="header">
+    <button class="back-button" id="back-button">
+      <img src="icons/back.png" alt="Back">
+    </button>
+    <h1 id="title">Configuración de Close Blank Tabs</h1>
+  </div>
+  <label id="interval-label">Intervalo de verificación (segundos):</label>
+  <input type="number" id="interval" min="1" value="60">
   <button id="save">Guardar</button>
+
+  <div id="notification">Configuración guardada</div>
 
   <script src="options.js"></script>
 </body>

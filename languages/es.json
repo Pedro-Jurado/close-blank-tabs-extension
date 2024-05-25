@@ -1,0 +1,9 @@
+{
+  "title": "Close Blank Tabs",
+  "description": "Esta extensión cierra automáticamente las pestañas vacías o about:blank.",
+  "settings-link": "Configuración",
+  "options-title": "Configuración de Close Blank Tabs",
+  "options-interval-label": "Intervalo de verificación (segundos):",
+  "options-save-button": "Guardar",
+  "notification-saved": "Configuración guardada"
+}

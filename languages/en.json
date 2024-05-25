@@ -1,0 +1,9 @@
+{
+  "title": "Close Blank Tabs",
+  "description": "This extension automatically closes empty or about:blank tabs.",
+  "settings-link": "Settings",
+  "options-title": "Configuration of Close Blank Tabs",
+  "options-interval-label": "Check interval (seconds):",
+  "options-save-button": "Save",
+  "notification-saved": "Configuration saved"
+}

@@ -5,13 +5,51 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 10px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      margin: 0;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .language-selector {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+    .language-selector img {
+      width: 24px;
+      height: auto;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Close Blank Tabs</h1>
-  <p>Esta extensión cierra automáticamente las pestañas vacías o about:blank.</p>
-  <a href="options.html">Configuración</a>
+  <div class="language-selector">
+    <img src="icons/en.png" alt="English" id="lang-en">
+    <img src="icons/es.png" alt="Español" id="lang-es">
+  </div>
+  <h1 id="title">Close Blank Tabs</h1>
+  <p id="description">This extension automatically closes empty or about:blank tabs.</p>
+  <a href="options.html" id="settings-link">Settings</a>
+
+  <script src="popup.js"></script>
 </body>
 </html>
