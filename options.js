@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const endTime = Date.now() + interval * 1000;
       chrome.storage.sync.set({ interval: interval, endTime: endTime }, function() {
         showNotification(lang, 'notification-saved');
+        console.log(`Interval set to ${interval} seconds and endTime set to ${endTime}`);
+        chrome.runtime.sendMessage({ action: 'resetCleanupInterval' }, function(response) {
+          console.log(response.status);
+        });
       });
     });
 
@@ -67,7 +71,7 @@ function showNotification(lang, messageKey) {
 }
 
 function loadInterval() {
-  chrome.storage.sync.get({ interval: 60 }, function(data) {
+  chrome.storage.sync.get({ interval: 600 }, function(data) {
     const interval = data.interval || 1;
     document.getElementById('interval').value = interval;
     updateIntervalDisplay();
