@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Close Blank Tabs",
-  "version": "1.0.1",
-  "description": "Cierra automáticamente las pestañas vacías o about:blank",
+  "version": "1.0.2",
+  "description": "Automatically closes empty or about:blank tabs",
   "permissions": [
     "tabs",
     "storage"
