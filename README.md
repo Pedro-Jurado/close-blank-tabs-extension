@@ -6,6 +6,7 @@ Close Blank Tabs is a browser extension that automatically closes empty or about
 
 - Automatically closes empty or about:blank tabs.
 - Customizable check interval.
+- Displays the remaining time until the next tab close.
 - Easy to use with a simple and clear interface.
 - Multi-language support (English and Spanish).
 
@@ -23,6 +24,7 @@ Close Blank Tabs is a browser extension that automatically closes empty or about
 1. Click the extension icon in the browser toolbar to open the popup.
 2. Configure the check interval on the options page according to your preferences.
 3. Select your preferred language using the language selector in the popup.
+4. View the remaining time until the next tab close in the popup.
 
 ## Future Enhancements
 
