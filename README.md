@@ -12,6 +12,14 @@ Close Blank Tabs is a browser extension that automatically closes empty or about
 
 ## Installation
 
+### From the Chrome Web Store
+
+1. Open your browser and go to the [Chrome Web Store](https://chromewebstore.google.com/detail/close-blank-tabs/kngkfffcdblplcdifdcbljhkaiccdmpe).
+2. Click "Add to Chrome" (or "Add to Edge" if you're using Microsoft Edge).
+3. Confirm the installation in the dialog that appears.
+
+### Manual Installation
+
 1. Clone this repository or download the ZIP file.
 2. Open your browser and go to the extensions page.
    - In Chrome, navigate to `chrome://extensions/`.
